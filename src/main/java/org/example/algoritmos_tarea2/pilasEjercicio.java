@@ -41,8 +41,9 @@ public class pilasEjercicio <T>{
 
     //POP Y PUSH
 
-    //modificarlo a mi version!!!
-    public T pop(){ return (pilaVacia()?null:pila[tope--]);}
+    public T pop(){
+        return (pilaVacia()?null:pila[tope--]);
+    }
 
 
     public void push(T dato){

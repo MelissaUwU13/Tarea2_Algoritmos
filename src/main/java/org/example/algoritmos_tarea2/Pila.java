@@ -1,7 +1,5 @@
 package org.example.algoritmos_tarea2;
 
-import java.util.ArrayList;
-
 public class Pila {
         private String cadena;
 
@@ -22,7 +20,12 @@ public class Pila {
             */
 
             Pila cadena = new Pila();
+
+            //ejercicio 3
             System.out.println(cadena.invierteCadena("hola"));
+
+            //ejercicio 4
+            System.out.println(cadena.revisarSintaxis("{()}"));
         }
 
 
@@ -49,17 +52,53 @@ public class Pila {
         }
 
 
-    //Hacer un metodo que reciba una cadena del tipo {[()]}
-    //Que verifique que la cantidad de elementos en correcta y que existe concordancia entre los pares
-    public boolean revisarSintaxis(String cadena){
+        //Hacer un metodo que reciba una cadena del tipo {[()]}
+        //Que verifique que la cantidad de elementos en correcta y que existe concordancia entre los pares
+        public boolean revisarSintaxis(String cadena){
 
-        return false;
-    }
+            pilasEjercicio<Character> pilas = new pilasEjercicio<>();
 
-    //ordena de menor a mayor un vector de numeros
-    public pilasEjercicio<Integer> ordenarNumeros(int[] vector){
+            for(int i = 0; i < cadena.length(); i++){
 
-        return null;
-    }
+                char c = cadena.charAt(i);
 
+                //primero verificamos si abren, sisi entonces lo metemos a la pila
+                if(c == '(' || c == '{' || c == '['){
+                    pilas.push(c);
+                }
+
+                //Si cierran verificamos que cierre bien
+                else if(c == ')' || c == '}' || c == ']'){
+
+                    //Si no hay nada que comparar entonces error
+                    if(pilas.pilaVacia()){
+                        return false;
+                    }
+
+                    //para revisar caracteres
+                    char abierto = pilas.pop();
+
+                    //Compararamos pares
+                    if(c == ')' && abierto != '('){
+                        return false;
+                    }
+                    if(c == '}' && abierto != '{'){
+                        return false;
+                    }
+                    if(c == ']' && abierto != '['){
+                        return false;
+                    }
+                }
+            }
+
+            //Si sale bien regresa true, si hubo partes imcompletas entonces false
+            return pilas.pilaVacia();
+        }
+
+
+        //ordena de menor a mayor un vector de numeros
+        public pilasEjercicio<Integer> ordenarNumeros(int[] vector){
+
+            return null;
+        }
 }
