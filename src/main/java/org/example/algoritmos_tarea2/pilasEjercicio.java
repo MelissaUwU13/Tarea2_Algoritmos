@@ -39,7 +39,6 @@ public class pilasEjercicio <T>{
         return pila.length == tope; //si tanto el tamaño del arreglo y tope son iguales, entonces esta llena
     }
 
-
     //POP Y PUSH
 
     //modificarlo a mi version!!!
