@@ -26,6 +26,16 @@ public class Pila {
 
             //ejercicio 4
             System.out.println(cadena.revisarSintaxis("{()}"));
+
+            //ejercicio 5
+            int[] numeros = {5, 2, 1, 9, 3, 4, 11, 10};
+
+            pilasEjercicio<Integer> resultado = cadena.ordenarNumeros(numeros);
+
+            //mientras la pila no este vacia estaremos imprimiendo los resultados ya ordenados
+            while(!resultado.pilaVacia()){
+                System.out.print(resultado.pop() + " ");
+            }
         }
 
 
@@ -91,7 +101,7 @@ public class Pila {
                 }
             }
 
-            //Si sale bien regresa true, si hubo partes imcompletas entonces false
+            //Si sale bien regresa true, si hubo partes incompletas entonces false
             return pilas.pilaVacia();
         }
 
@@ -99,6 +109,32 @@ public class Pila {
         //ordena de menor a mayor un vector de numeros
         public pilasEjercicio<Integer> ordenarNumeros(int[] vector){
 
-            return null;
+            pilasEjercicio<Integer> pilaOrdenada = new pilasEjercicio<>();
+            pilasEjercicio<Integer> pilaAux = new pilasEjercicio<>();
+
+            for(int i = 0; i < vector.length; i++){
+
+                int numero = vector[i]; // Tomamos el número actual
+
+                //Mientras la pila no esté vacía, y que el número en el tope sea mayor que el número actual
+                //entonces sacaremos los menores y los pasamos a la pila auxiliar
+                while(!pilaOrdenada.pilaVacia() &&
+                        (Integer)pilaOrdenada.getPila()[pilaOrdenada.getTope()] < numero){
+
+                    pilaAux.push(pilaOrdenada.pop());
+                }
+
+                //Ahora sí metemos el número en su posición correcta
+                pilaOrdenada.push(numero);
+
+                //Regresamos los números que habíamos quitado para repetir el proceso de ordenar
+                while(!pilaAux.pilaVacia()){
+                    pilaOrdenada.push(pilaAux.pop());
+                }
+            }
+
+            //Regresamos la pila ya ordenada
+            return pilaOrdenada;
         }
+
 }
