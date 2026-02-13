@@ -1,0 +1,58 @@
+package org.example.algoritmos_tarea2;
+
+
+//clases parametrizadas
+public class pilasEjercicio <T>{
+    private int tope;
+    private T[] pila;
+
+    public pilasEjercicio() {
+        pila = (T[]) new Object[10];
+        tope = -1;
+    }
+
+    //SETTERS
+    public void setPila(T [] pila) {
+        this.pila = pila;
+    }
+
+    public void setTope(int tope) {
+        this.tope = tope;
+    }
+
+
+    //GETTERS
+    public int getTope() {
+        return tope;
+    }
+
+    public Object[] getPila() {
+        return pila;
+    }
+
+
+    public boolean pilaVacia(){
+        return tope == -1; //si el tope es igual a -1, significa que no hay nada dentro
+    }
+
+    public boolean pilaLlena(){
+        return pila.length == tope; //si tanto el tamaño del arreglo y tope son iguales, entonces esta llena
+    }
+
+
+    //POP Y PUSH
+
+    //modificarlo a mi version!!!
+    public T pop(){ return (pilaVacia()?null:pila[tope--]);}
+
+
+    public void push(T dato){
+        if(pilaLlena()){
+            System.out.println("La pila esta llena, no se puede agregar nada mas");
+        }
+        else{
+            tope++;
+            pila[tope]=dato; //agregamos el dato T a nuestro arreglo
+        }
+    }
+}
